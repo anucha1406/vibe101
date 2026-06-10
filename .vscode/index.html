@@ -2,12 +2,38 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>หน้าเว็บแรกของฉัน</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World แบบกะพริบ</title>
+    <style>
+        /* สไตล์สำหรับพื้นหลังและตัวหนังสือ */
+        body {
+            background-color: purple; /* พื้นหลังสีม่วง */
+            color: white; /* ตัวหนังสือสีขาว */
+            font-family: Arial, sans-serif; /* ฟอนต์ที่ดูง่าย */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* เอฟเฟกต์กะพริบสำหรับทั้งหน้าจอหรือเฉพาะข้อความ */
+        .blink-container {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-
-    <h1>Hello, World!</h1>
-    <p>ยินดีต้อนรับสู่ก้าวแรกของการเขียนเว็บไซต์ครับ</p>
-
+    <div class="blink-container">
+        <h1>Hello, World!</h1>
+        <p>ยินดีต้อนรับสู่ก้าวแรกของการเขียนเว็บไซต์ครับ</p>
+    </div>
 </body>
 </html>
