@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบเข้าสู่ระบบโรงเรียน - School Login System</title>
+    <title>โรงเรียนวิบูลวิทยา - ระบบเข้าสู่ระบบ</title>
     <style>
         * {
             margin: 0;
@@ -16,9 +16,89 @@
             background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Menu */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .school-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .school-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .school-title {
+            color: #1a237e;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #37474f;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f7ff;
+            color: #2196F3;
+        }
+
+        .nav-link.active {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .login-container {
@@ -199,7 +279,28 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 480px) {
+        /* Footer */
+        .footer {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            text-align: center;
+            color: #546e7a;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
             .login-container {
                 padding: 30px 20px;
             }
@@ -239,59 +340,92 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="school-header">
-            <div class="school-logo">
-                S
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="school-brand">
+                <div class="school-icon">S</div>
+                <div class="school-title">โรงเรียนวิบูลวิทยา</div>
             </div>
-            <h1 class="school-name">โรงเรียนวิบูลวิทยา</h1>
-            <p class="school-motto">คุณธรรม นำความรู้ สู่ความเป็นเลิศ</p>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">หน้าหลัก</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">แผนกวิชา</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">ติดต่อ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">เกี่ยวกับ</a>
+                </li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="user-type-selector">
-            <button class="user-type-btn active" data-type="student">นักเรียน</button>
-            <button class="user-type-btn" data-type="teacher">ครูผู้สอน</button>
-            <button class="user-type-btn" data-type="parent">ผู้ปกครอง</button>
-            <button class="user-type-btn" data-type="staff">เจ้าหน้าที่</button>
-        </div>
-
-        <form class="login-form" id="loginForm">
-            <div class="form-group">
-                <label for="username">ชื่อผู้ใช้ / อีเมล</label>
-                <input type="text" 
-                       id="username" 
-                       class="form-control" 
-                       placeholder="กรอกชื่อผู้ใช้หรืออีเมล"
-                       required>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="login-container">
+            <div class="school-header">
+                <div class="school-logo">
+                    S
+                </div>
+                <h1 class="school-name">โรงเรียนวิบูลวิทยา</h1>
+                <p class="school-motto">คุณธรรม นำความรู้ สู่ความเป็นเลิศ</p>
             </div>
 
-            <div class="form-group">
-                <label for="password">รหัสผ่าน</label>
-                <input type="password" 
-                       id="password" 
-                       class="form-control" 
-                       placeholder="กรอกรหัสผ่าน"
-                       required>
+            <div class="user-type-selector">
+                <button class="user-type-btn active" data-type="student">นักเรียน</button>
+                <button class="user-type-btn" data-type="teacher">ครูผู้สอน</button>
+                <button class="user-type-btn" data-type="parent">ผู้ปกครอง</button>
+                <button class="user-type-btn" data-type="staff">เจ้าหน้าที่</button>
             </div>
 
-            <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">ชื่อผู้ใช้ / อีเมล</label>
+                    <input type="text" 
+                           id="username" 
+                           class="form-control" 
+                           placeholder="กรอกชื่อผู้ใช้หรืออีเมล"
+                           required>
+                </div>
 
-            <button type="submit" class="login-btn">เข้าสู่ระบบ</button>
-        </form>
+                <div class="form-group">
+                    <label for="password">รหัสผ่าน</label>
+                    <input type="password" 
+                           id="password" 
+                           class="form-control" 
+                           placeholder="กรอกรหัสผ่าน"
+                           required>
+                </div>
 
-        <div class="footer-links">
-            <a href="#" class="footer-link">สมัครสมาชิกนักเรียนใหม่</a>
-            <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
-            <a href="#" class="footer-link">ติดต่อเรา</a>
+                <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
+
+                <button type="submit" class="login-btn">เข้าสู่ระบบ</button>
+            </form>
+
+            <div class="footer-links">
+                <a href="#" class="footer-link">สมัครสมาชิกนักเรียนใหม่</a>
+                <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
+                <a href="#" class="footer-link">ติดต่อเรา</a>
+            </div>
+
+            <div class="language-selector">
+                ภาษา: 
+                <button class="language-btn" data-lang="th">ไทย</button>
+                | 
+                <button class="language-btn" data-lang="en">English</button>
+            </div>
         </div>
+    </main>
 
-        <div class="language-selector">
-            ภาษา: 
-            <button class="language-btn" data-lang="th">ไทย</button>
-            | 
-            <button class="language-btn" data-lang="en">English</button>
-        </div>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 โรงเรียนวิบูลวิทยา. สงวนลิขสิทธิ์.</p>
+        <p>123 ถนนการศึกษา แขวงวิชาการ เขตการเรียนรู้ กรุงเทพมหานคร 10110</p>
+    </footer>
 
     <script>
         // Handle user type selection
@@ -361,6 +495,7 @@
                 
                 if (lang === 'en') {
                     // Switch to English
+                    document.querySelector('.school-title').textContent = 'Wiboon Wittaya School';
                     document.querySelector('.school-name').textContent = 'Wiboon Wittaya School';
                     document.querySelector('.school-motto').textContent = 'Morality Leads Knowledge to Excellence';
                     document.querySelector('[data-type="student"]').textContent = 'Student';
@@ -376,10 +511,16 @@
                     document.querySelector('.footer-link:nth-child(1)').textContent = 'New Student Registration';
                     document.querySelector('.footer-link:nth-child(2)').textContent = 'FAQ';
                     document.querySelector('.footer-link:nth-child(3)').textContent = 'Contact Us';
+                    document.querySelector('.nav-link:nth-child(1)').textContent = 'Home';
+                    document.querySelector('.nav-link:nth-child(2)').textContent = 'Departments';
+                    document.querySelector('.nav-link:nth-child(3)').textContent = 'Contact';
+                    document.querySelector('.nav-link:nth-child(4)').textContent = 'About';
+                    document.querySelector('.footer p:nth-child(2)').textContent = '123 Education Road, Academic Subdistrict, Learning District, Bangkok 10110';
                     document.querySelector('.language-selector').innerHTML = 'Language: ';
                     document.querySelector('.language-selector').innerHTML += '<button class="language-btn" data-lang="th">ไทย</button> | <button class="language-btn" data-lang="en">English</button>';
                 } else {
                     // Switch to Thai (default)
+                    document.querySelector('.school-title').textContent = 'โรงเรียนวิบูลวิทยา';
                     document.querySelector('.school-name').textContent = 'โรงเรียนวิบูลวิทยา';
                     document.querySelector('.school-motto').textContent = 'คุณธรรม นำความรู้ สู่ความเป็นเลิศ';
                     document.querySelector('[data-type="student"]').textContent = 'นักเรียน';
@@ -395,6 +536,11 @@
                     document.querySelector('.footer-link:nth-child(1)').textContent = 'สมัครสมาชิกนักเรียนใหม่';
                     document.querySelector('.footer-link:nth-child(2)').textContent = 'คำถามที่พบบ่อย';
                     document.querySelector('.footer-link:nth-child(3)').textContent = 'ติดต่อเรา';
+                    document.querySelector('.nav-link:nth-child(1)').textContent = 'หน้าหลัก';
+                    document.querySelector('.nav-link:nth-child(2)').textContent = 'แผนกวิชา';
+                    document.querySelector('.nav-link:nth-child(3)').textContent = 'ติดต่อ';
+                    document.querySelector('.nav-link:nth-child(4)').textContent = 'เกี่ยวกับ';
+                    document.querySelector('.footer p:nth-child(2)').textContent = '123 ถนนการศึกษา แขวงวิชาการ เขตการเรียนรู้ กรุงเทพมหานคร 10110';
                     document.querySelector('.language-selector').innerHTML = 'ภาษา: ';
                     document.querySelector('.language-selector').innerHTML += '<button class="language-btn" data-lang="th">ไทย</button> | <button class="language-btn" data-lang="en">English</button>';
                 }
@@ -422,6 +568,25 @@
             };
             return texts[type] || type;
         }
+
+        // Navigation menu interaction
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => {
+                    l.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Show alert for demonstration
+                const pageName = this.textContent;
+                alert(`กำลังไปที่หน้า: ${pageName}\n(สำหรับการสาธิตเท่านั้น)`);
+            });
+        });
 
         // Initialize user type placeholder
         document.querySelector('.user-type-btn.active').click();
