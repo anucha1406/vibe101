@@ -3,37 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World แบบกะพริบ</title>
+    <title>Hello World - ก้าวแรกของการเขียนเว็บ</title>
     <style>
-        /* สไตล์สำหรับพื้นหลังและตัวหนังสือ */
         body {
-            background-color: purple; /* พื้นหลังสีม่วง */
-            color: white; /* ตัวหนังสือสีขาว */
-            font-family: Arial, sans-serif; /* ฟอนต์ที่ดูง่าย */
+            font-family: 'Sarabun', Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            background-color: #6a0dad; /* พื้นหลังสีม่วง */
+            color: white;              /* ตัวหนังสือสีขาว */
+        }
+        .container {
             text-align: center;
         }
-
-        /* เอฟเฟกต์กะพริบสำหรับทั้งหน้าจอหรือเฉพาะข้อความ */
-        .blink-container {
-            animation: blink 1s infinite;
+        h1 {
+            font-size: 3.5em;
+            margin: 0 0 20px 0;
         }
-
+        p {
+            font-size: 1.3em;
+        }
+        /* เอฟเฟกต์กระพริบ */
         @keyframes blink {
-            0% { opacity: 1; }
+            0%, 100% { opacity: 1; }
             50% { opacity: 0; }
-            100% { opacity: 1; }
+        }
+        .blink {
+            animation: blink 1s infinite;
         }
     </style>
 </head>
 <body>
-    <div class="blink-container">
+    <div class="container">
         <h1>Hello, World!</h1>
-        <p>ยินดีต้อนรับสู่ก้าวแรกของการเขียนเว็บไซต์ครับ</p>
+        <p class="blink">ยินดีต้อนรับสู่ก้าวแรกของการเขียนเว็บไซต์ครับ</p>
     </div>
 </body>
 </html>
