@@ -3,42 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World - ก้าวแรกของการเขียนเว็บ</title>
+    <title>ระบบเข้าสู่ระบบโรงเรียน - School Login System</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Sarabun', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #6a0dad; /* พื้นหลังสีม่วง */
-            color: white;              /* ตัวหนังสือสีขาว */
+            padding: 20px;
         }
-        .container {
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
             text-align: center;
         }
-        h1 {
-            font-size: 3.5em;
-            margin: 0 0 20px 0;
+
+        .school-header {
+            margin-bottom: 30px;
         }
-        p {
-            font-size: 1.3em;
+
+        .school-logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
         }
-        /* เอฟเฟกต์กระพริบ */
-        @keyframes blink {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0; }
+
+        .school-name {
+            color: #1a237e;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
-        .blink {
-            animation: blink 1s infinite;
+
+        .school-motto {
+            color: #546e7a;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .login-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #37474f;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f5f7fa;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #2196F3;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #90a4ae;
+        }
+
+        .user-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .user-type-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f5f7fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            color: #546e7a;
+        }
+
+        .user-type-btn.active {
+            background: #2196F3;
+            color: white;
+            border-color: #2196F3;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .footer-link {
+            color: #546e7a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #2196F3;
+            text-decoration: underline;
+        }
+
+        .language-selector {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #546e7a;
+        }
+
+        .language-btn {
+            background: none;
+            border: none;
+            color: #2196F3;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0 5px;
+        }
+
+        .language-btn:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            color: #2196F3;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .school-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            
+            .school-name {
+                font-size: 24px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container {
+            animation: fadeIn 0.6s ease-out;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hello, World!</h1>
-        <p class="blink">ยินดีต้อนรับสู่ก้าวแรกของการเขียนเว็บไซต์ครับ</p>
+    <div class="login-container">
+        <div class="school-header">
+            <div class="school-logo">
+                S
+            </div>
+            <h1 class="school-name">โรงเรียนวิบูลวิทยา</h1>
+            <p class="school-motto">คุณธรรม นำความรู้ สู่ความเป็นเลิศ</p>
+        </div>
+
+        <div class="user-type-selector">
+            <button class="user-type-btn active" data-type="student">นักเรียน</button>
+            <button class="user-type-btn" data-type="teacher">ครูผู้สอน</button>
+            <button class="user-type-btn" data-type="parent">ผู้ปกครอง</button>
+            <button class="user-type-btn" data-type="staff">เจ้าหน้าที่</button>
+        </div>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">ชื่อผู้ใช้ / อีเมล</label>
+                <input type="text" 
+                       id="username" 
+                       class="form-control" 
+                       placeholder="กรอกชื่อผู้ใช้หรืออีเมล"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">รหัสผ่าน</label>
+                <input type="password" 
+                       id="password" 
+                       class="form-control" 
+                       placeholder="กรอกรหัสผ่าน"
+                       required>
+            </div>
+
+            <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
+
+            <button type="submit" class="login-btn">เข้าสู่ระบบ</button>
+        </form>
+
+        <div class="footer-links">
+            <a href="#" class="footer-link">สมัครสมาชิกนักเรียนใหม่</a>
+            <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
+            <a href="#" class="footer-link">ติดต่อเรา</a>
+        </div>
+
+        <div class="language-selector">
+            ภาษา: 
+            <button class="language-btn" data-lang="th">ไทย</button>
+            | 
+            <button class="language-btn" data-lang="en">English</button>
+        </div>
     </div>
+
+    <script>
+        // Handle user type selection
+        document.querySelectorAll('.user-type-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.user-type-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Update form placeholder based on user type
+                const userType = this.getAttribute('data-type');
+                const usernameInput = document.getElementById('username');
+                
+                switch(userType) {
+                    case 'student':
+                        usernameInput.placeholder = "กรอกรหัสนักเรียน (เช่น 65001)";
+                        break;
+                    case 'teacher':
+                        usernameInput.placeholder = "กรอกอีเมลครู (เช่น teacher@school.ac.th)";
+                        break;
+                    case 'parent':
+                        usernameInput.placeholder = "กรอกอีเมลผู้ปกครอง";
+                        break;
+                    case 'staff':
+                        usernameInput.placeholder = "กรอกรหัสเจ้าหน้าที่";
+                        break;
+                }
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const userType = document.querySelector('.user-type-btn.active').getAttribute('data-type');
+            
+            // Simple validation
+            if (!username.trim() || !password.trim()) {
+                alert('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.login-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'กำลังเข้าสู่ระบบ...';
+            submitBtn.disabled = true;
+            
+            // Simulate login process
+            setTimeout(() => {
+                alert(`เข้าสู่ระบบสำเร็จในฐานะ: ${getUserTypeText(userType)}\nชื่อผู้ใช้: ${username}`);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // In a real application, you would redirect to dashboard
+                // window.location.href = '/dashboard.html';
+            }, 1500);
+        });
+
+        // Handle language switching
+        document.querySelectorAll('.language-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                
+                if (lang === 'en') {
+                    // Switch to English
+                    document.querySelector('.school-name').textContent = 'Wiboon Wittaya School';
+                    document.querySelector('.school-motto').textContent = 'Morality Leads Knowledge to Excellence';
+                    document.querySelector('[data-type="student"]').textContent = 'Student';
+                    document.querySelector('[data-type="teacher"]').textContent = 'Teacher';
+                    document.querySelector('[data-type="parent"]').textContent = 'Parent';
+                    document.querySelector('[data-type="staff"]').textContent = 'Staff';
+                    document.querySelector('label[for="username"]').textContent = 'Username / Email';
+                    document.getElementById('username').placeholder = 'Enter username or email';
+                    document.querySelector('label[for="password"]').textContent = 'Password';
+                    document.getElementById('password').placeholder = 'Enter password';
+                    document.querySelector('.forgot-password').textContent = 'Forgot Password?';
+                    document.querySelector('.login-btn').textContent = 'Login';
+                    document.querySelector('.footer-link:nth-child(1)').textContent = 'New Student Registration';
+                    document.querySelector('.footer-link:nth-child(2)').textContent = 'FAQ';
+                    document.querySelector('.footer-link:nth-child(3)').textContent = 'Contact Us';
+                    document.querySelector('.language-selector').innerHTML = 'Language: ';
+                    document.querySelector('.language-selector').innerHTML += '<button class="language-btn" data-lang="th">ไทย</button> | <button class="language-btn" data-lang="en">English</button>';
+                } else {
+                    // Switch to Thai (default)
+                    document.querySelector('.school-name').textContent = 'โรงเรียนวิบูลวิทยา';
+                    document.querySelector('.school-motto').textContent = 'คุณธรรม นำความรู้ สู่ความเป็นเลิศ';
+                    document.querySelector('[data-type="student"]').textContent = 'นักเรียน';
+                    document.querySelector('[data-type="teacher"]').textContent = 'ครูผู้สอน';
+                    document.querySelector('[data-type="parent"]').textContent = 'ผู้ปกครอง';
+                    document.querySelector('[data-type="staff"]').textContent = 'เจ้าหน้าที่';
+                    document.querySelector('label[for="username"]').textContent = 'ชื่อผู้ใช้ / อีเมล';
+                    document.getElementById('username').placeholder = 'กรอกชื่อผู้ใช้หรืออีเมล';
+                    document.querySelector('label[for="password"]').textContent = 'รหัสผ่าน';
+                    document.getElementById('password').placeholder = 'กรอกรหัสผ่าน';
+                    document.querySelector('.forgot-password').textContent = 'ลืมรหัสผ่าน?';
+                    document.querySelector('.login-btn').textContent = 'เข้าสู่ระบบ';
+                    document.querySelector('.footer-link:nth-child(1)').textContent = 'สมัครสมาชิกนักเรียนใหม่';
+                    document.querySelector('.footer-link:nth-child(2)').textContent = 'คำถามที่พบบ่อย';
+                    document.querySelector('.footer-link:nth-child(3)').textContent = 'ติดต่อเรา';
+                    document.querySelector('.language-selector').innerHTML = 'ภาษา: ';
+                    document.querySelector('.language-selector').innerHTML += '<button class="language-btn" data-lang="th">ไทย</button> | <button class="language-btn" data-lang="en">English</button>';
+                }
+                
+                // Re-attach event listeners
+                attachLanguageButtonListeners();
+            });
+        });
+
+        function attachLanguageButtonListeners() {
+            document.querySelectorAll('.language-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    // ... same logic as above
+                });
+            });
+        }
+
+        function getUserTypeText(type) {
+            const texts = {
+                'student': 'นักเรียน',
+                'teacher': 'ครูผู้สอน',
+                'parent': 'ผู้ปกครอง',
+                'staff': 'เจ้าหน้าที่'
+            };
+            return texts[type] || type;
+        }
+
+        // Initialize user type placeholder
+        document.querySelector('.user-type-btn.active').click();
+    </script>
 </body>
 </html>
