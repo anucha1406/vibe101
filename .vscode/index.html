@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>โรงเรียนวิบูลวิทยา - ระบบเข้าสู่ระบบ</title>
+    <title>วิทยาลัยเทคนิคลพบุรี - ระบบอนาคต</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-maroon: #800000;
+            --dark-maroon: #5a0000;
+            --light-maroon: #a30000;
+            --neon-red: #ff0033;
+            --futuristic-white: #f0f0f0;
+            --futuristic-gray: #1a1a1a;
+            --glow-blue: #00ccff;
+            --glow-purple: #9933ff;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,17 +25,53 @@
         }
 
         body {
-            font-family: 'Sarabun', Arial, sans-serif;
-            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            font-family: 'Rajdhani', 'Sarabun', Arial, sans-serif;
+            background: linear-gradient(135deg, 
+                var(--futuristic-gray) 0%, 
+                #2a1a1a 30%, 
+                var(--dark-maroon) 70%, 
+                #1a0000 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            color: var(--futuristic-white);
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Navigation Menu */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 51, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 204, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(153, 51, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Futuristic Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+        }
+
+        /* Navigation Menu - Futuristic */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 0, 51, 0.3);
+            box-shadow: 0 0 30px rgba(255, 0, 51, 0.2);
             padding: 15px 30px;
             position: sticky;
             top: 0;
@@ -30,7 +79,7 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -46,26 +95,56 @@
         .school-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-red) 0%, var(--light-maroon) 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 24px;
             font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .school-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .school-title {
-            color: #1a237e;
-            font-size: 24px;
-            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--futuristic-white), var(--neon-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.3);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-item {
@@ -73,523 +152,352 @@
         }
 
         .nav-link {
-            color: #37474f;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--futuristic-white);
             text-decoration: none;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 51, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
         }
 
         .nav-link:hover {
-            background-color: #f0f7ff;
-            color: #2196F3;
+            border-color: var(--neon-red);
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+            background: rgba(255, 0, 51, 0.1);
         }
 
         .nav-link.active {
-            background-color: #2196F3;
-            color: white;
+            background: rgba(255, 0, 51, 0.2);
+            border-color: var(--neon-red);
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.4);
         }
 
-        /* Main Content */
+        /* Main Content - Futuristic */
         .main-content {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            min-height: calc(100vh - 160px);
         }
 
         .login-container {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            padding: 40px;
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 0, 51, 0.4);
+            box-shadow: 
+                0 0 40px rgba(255, 0, 51, 0.3),
+                0 0 80px rgba(0, 204, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            padding: 50px;
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--neon-red), 
+                var(--glow-blue), 
+                var(--glow-purple), 
+                var(--neon-red));
+            border-radius: 26px;
+            z-index: -1;
+            animation: borderGlow 4s linear infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .school-header {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .school-logo {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-            border-radius: 50%;
-            margin: 0 auto 20px;
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, var(--neon-red) 0%, var(--light-maroon) 100%);
+            border-radius: 25px;
+            margin: 0 auto 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 48px;
+            font-size: 60px;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 
+                0 0 30px rgba(255, 0, 51, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .school-logo:hover {
+            transform: rotateY(10deg) rotateX(5deg);
         }
 
         .school-name {
-            color: #1a237e;
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--futuristic-white);
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 
+                0 0 10px rgba(255, 0, 51, 0.5),
+                0 0 20px rgba(255, 0, 51, 0.3);
         }
 
         .school-motto {
-            color: #546e7a;
-            font-size: 16px;
-            font-weight: 300;
+            color: var(--glow-blue);
+            font-size: 18px;
+            font-weight: 500;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
         }
 
         .login-form {
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: left;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #37474f;
-            font-weight: 500;
-            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--glow-blue);
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .form-control {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 0, 51, 0.3);
+            border-radius: 12px;
             font-size: 16px;
+            color: var(--futuristic-white);
             transition: all 0.3s ease;
-            background-color: #f5f7fa;
+            font-family: 'Rajdhani', sans-serif;
         }
 
         .form-control:focus {
             outline: none;
-            border-color: #2196F3;
-            background-color: white;
-            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+            border-color: var(--neon-red);
+            box-shadow: 
+                0 0 20px rgba(255, 0, 51, 0.3),
+                inset 0 0 10px rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .form-control::placeholder {
-            color: #90a4ae;
+            color: rgba(255, 255, 255, 0.4);
         }
 
         .user-type-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .user-type-btn {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            background: #f5f7fa;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 0, 51, 0.3);
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
-            font-weight: 500;
-            color: #546e7a;
+            font-weight: 600;
+            color: var(--futuristic-white);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-type-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 51, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .user-type-btn:hover::before {
+            left: 100%;
+        }
+
+        .user-type-btn:hover {
+            border-color: var(--neon-red);
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+            transform: translateY(-2px);
         }
 
         .user-type-btn.active {
-            background: #2196F3;
-            color: white;
-            border-color: #2196F3;
-            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+            background: rgba(255, 0, 51, 0.15);
+            border-color: var(--neon-red);
+            box-shadow: 
+                0 0 20px rgba(255, 0, 51, 0.4),
+                inset 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
         .login-btn {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            padding: 20px;
+            background: linear-gradient(135deg, var(--neon-red) 0%, var(--light-maroon) 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-top: 20px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
         }
 
         .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 30px rgba(255, 0, 51, 0.4),
+                0 0 40px rgba(255, 0, 51, 0.3);
         }
 
         .login-btn:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
         .footer-links {
-            margin-top: 25px;
+            margin-top: 30px;
             display: flex;
             justify-content: space-between;
             font-size: 14px;
         }
 
         .footer-link {
-            color: #546e7a;
+            color: var(--glow-blue);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--neon-red);
+            transition: width 0.3s ease;
         }
 
         .footer-link:hover {
-            color: #2196F3;
-            text-decoration: underline;
+            color: var(--neon-red);
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.3);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
         }
 
         .language-selector {
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 14px;
-            color: #546e7a;
+            color: var(--futuristic-white);
+            font-family: 'Orbitron', sans-serif;
         }
 
         .language-btn {
             background: none;
             border: none;
-            color: #2196F3;
+            color: var(--glow-blue);
             cursor: pointer;
-            font-weight: 500;
-            margin: 0 5px;
+            font-weight: 600;
+            margin: 0 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
         .language-btn:hover {
-            text-decoration: underline;
+            color: var(--neon-red);
+            background: rgba(255, 0, 51, 0.1);
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.2);
         }
-
-        .forgot-password {
-            color: #2196F3;
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            text-align: center;
-            color: #546e7a;
-            font-size: 14px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            
-            .login-container {
-                padding: 30px 20px;
-            }
-            
-            .school-logo {
-                width: 100px;
-                height: 100px;
-                font-size: 40px;
-            }
-            
-            .school-name {
-                font-size: 24px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .login-container {
-            animation: fadeIn 0.6s ease-out;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation Menu -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="school-brand">
-                <div class="school-icon">S</div>
-                <div class="school-title">โรงเรียนวิบูลวิทยา</div>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">หน้าหลัก</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">แผนกวิชา</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">ติดต่อ</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">เกี่ยวกับ</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="login-container">
-            <div class="school-header">
-                <div class="school-logo">
-                    S
-                </div>
-                <h1 class="school-name">โรงเรียนวิบูลวิทยา</h1>
-                <p class="school-motto">คุณธรรม นำความรู้ สู่ความเป็นเลิศ</p>
-            </div>
-
-            <div class="user-type-selector">
-                <button class="user-type-btn active" data-type="student">นักเรียน</button>
-                <button class="user-type-btn" data-type="teacher">ครูผู้สอน</button>
-                <button class="user-type-btn" data-type="parent">ผู้ปกครอง</button>
-                <button class="user-type-btn" data-type="staff">เจ้าหน้าที่</button>
-            </div>
-
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label for="username">ชื่อผู้ใช้ / อีเมล</label>
-                    <input type="text" 
-                           id="username" 
-                           class="form-control" 
-                           placeholder="กรอกชื่อผู้ใช้หรืออีเมล"
-                           required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">รหัสผ่าน</label>
-                    <input type="password" 
-                           id="password" 
-                           class="form-control" 
-                           placeholder="กรอกรหัสผ่าน"
-                           required>
-                </div>
-
-                <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
-
-                <button type="submit" class="login-btn">เข้าสู่ระบบ</button>
-            </form>
-
-            <div class="footer-links">
-                <a href="#" class="footer-link">สมัครสมาชิกนักเรียนใหม่</a>
-                <a href="#" class="footer-link">คำถามที่พบบ่อย</a>
-                <a href="#" class="footer-link">ติดต่อเรา</a>
-            </div>
-
-            <div class="language-selector">
-                ภาษา: 
-                <button class="language-btn" data-lang="th">ไทย</button>
-                | 
-                <button class="language-btn" data-lang="en">English</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2026 โรงเรียนวิบูลวิทยา. สงวนลิขสิทธิ์.</p>
-        <p>123 ถนนการศึกษา แขวงวิชาการ เขตการเรียนรู้ กรุงเทพมหานคร 10110</p>
-    </footer>
-
-    <script>
-        // Handle user type selection
-        document.querySelectorAll('.user-type-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.user-type-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // Update form placeholder based on user type
-                const userType = this.getAttribute('data-type');
-                const usernameInput = document.getElementById('username');
-                
-                switch(userType) {
-                    case 'student':
-                        usernameInput.placeholder = "กรอกรหัสนักเรียน (เช่น 65001)";
-                        break;
-                    case 'teacher':
-                        usernameInput.placeholder = "กรอกอีเมลครู (เช่น teacher@school.ac.th)";
-                        break;
-                    case 'parent':
-                        usernameInput.placeholder = "กรอกอีเมลผู้ปกครอง";
-                        break;
-                    case 'staff':
-                        usernameInput.placeholder = "กรอกรหัสเจ้าหน้าที่";
-                        break;
-                }
-            });
-        });
-
-        // Handle form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const userType = document.querySelector('.user-type-btn.active').getAttribute('data-type');
-            
-            // Simple validation
-            if (!username.trim() || !password.trim()) {
-                alert('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน');
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = this.querySelector('.login-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'กำลังเข้าสู่ระบบ...';
-            submitBtn.disabled = true;
-            
-            // Simulate login process
-            setTimeout(() => {
-                alert(`เข้าสู่ระบบสำเร็จในฐานะ: ${getUserTypeText(userType)}\nชื่อผู้ใช้: ${username}`);
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                
-                // In a real application, you would redirect to dashboard
-                // window.location.href = '/dashboard.html';
-            }, 1500);
-        });
-
-        // Handle language switching
-        document.querySelectorAll('.language-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                
-                if (lang === 'en') {
-                    // Switch to English
-                    document.querySelector('.school-title').textContent = 'Wiboon Wittaya School';
-                    document.querySelector('.school-name').textContent = 'Wiboon Wittaya School';
-                    document.querySelector('.school-motto').textContent = 'Morality Leads Knowledge to Excellence';
-                    document.querySelector('[data-type="student"]').textContent = 'Student';
-                    document.querySelector('[data-type="teacher"]').textContent = 'Teacher';
-                    document.querySelector('[data-type="parent"]').textContent = 'Parent';
-                    document.querySelector('[data-type="staff"]').textContent = 'Staff';
-                    document.querySelector('label[for="username"]').textContent = 'Username / Email';
-                    document.getElementById('username').placeholder = 'Enter username or email';
-                    document.querySelector('label[for="password"]').textContent = 'Password';
-                    document.getElementById('password').placeholder = 'Enter password';
-                    document.querySelector('.forgot-password').textContent = 'Forgot Password?';
-                    document.querySelector('.login-btn').textContent = 'Login';
-                    document.querySelector('.footer-link:nth-child(1)').textContent = 'New Student Registration';
-                    document.querySelector('.footer-link:nth-child(2)').textContent = 'FAQ';
-                    document.querySelector('.footer-link:nth-child(3)').textContent = 'Contact Us';
-                    document.querySelector('.nav-link:nth-child(1)').textContent = 'Home';
-                    document.querySelector('.nav-link:nth-child(2)').textContent = 'Departments';
-                    document.querySelector('.nav-link:nth-child(3)').textContent = 'Contact';
-                    document.querySelector('.nav-link:nth-child(4)').textContent = 'About';
-                    document.querySelector('.footer p:nth-child(2)').textContent = '123 Education Road, Academic Subdistrict, Learning District, Bangkok 10110';
-                    document.querySelector('.language-selector').innerHTML = 'Language: ';
-                    document.querySelector('.language-selector').innerHTML += '<button class="language-btn" data-lang="th">ไทย</button> | <button class="language-btn" data-lang="en">English</button>';
-                } else {
-                    // Switch to Thai (default)
-                    document.querySelector('.school-title').textContent = 'โรงเรียนวิบูลวิทยา';
-                    document.querySelector('.school-name').textContent = 'โรงเรียนวิบูลวิทยา';
-                    document.querySelector('.school-motto').textContent = 'คุณธรรม นำความรู้ สู่ความเป็นเลิศ';
-                    document.querySelector('[data-type="student"]').textContent = 'นักเรียน';
-                    document.querySelector('[data-type="teacher"]').textContent = 'ครูผู้สอน';
-                    document.querySelector('[data-type="parent"]').textContent = 'ผู้ปกครอง';
-                    document.querySelector('[data-type="staff"]').textContent = 'เจ้าหน้าที่';
-                    document.querySelector('label[for="username"]').textContent = 'ชื่อผู้ใช้ / อีเมล';
-                    document.getElementById('username').placeholder = 'กรอกชื่อผู้ใช้หรืออีเมล';
-                    document.querySelector('label[for="password"]').textContent = 'รหัสผ่าน';
-                    document.getElementById('password').placeholder = 'กรอกรหัสผ่าน';
-                    document.querySelector('.forgot-password').textContent = 'ลืมรหัสผ่าน?';
-                    document.querySelector('.login-btn').textContent = 'เข้าสู่ระบบ';
-                    document.querySelector('.footer-link:nth-child(1)').textContent = 'สมัครสมาชิกนักเรียนใหม่';
-                    document.querySelector('.footer-link:nth-child(2)').textContent = 'คำถามที่พบบ่อย';
-                    document.querySelector('.footer-link:nth-child(3)').textContent = 'ติดต่อเรา';
-                    document.querySelector('.nav-link:nth-child(1)').textContent = 'หน้าหลัก';
-                    document.querySelector('.nav-link:nth-child(2)').textContent = 'แผนกวิชา';
-                    document.querySelector('.nav-link:nth-child(3)').textContent = 'ติดต่อ';
-                    document.querySelector('.nav-link:nth-child(4)').textContent = 'เกี่ยวกับ';
-                    document.querySelector('.footer p:nth-child(2)').textContent = '123 ถนนการศึกษา แขวงวิชาการ เขตการเรียนรู้ กรุงเทพมหานคร 10110';
-                    document.querySelector('.language-selector').innerHTML = 'ภาษา: ';
-                    document.querySelector('.language-selector').innerHTML += '<button class="language-btn" data-lang="th">ไทย</button> | <button class="language-btn" data-lang="en">English</button>';
-                }
-                
-                // Re-attach event listeners
-                attachLanguageButtonListeners();
-            });
-        });
-
-        function attachLanguageButtonListeners() {
-            document.querySelectorAll('.language-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    // ... same logic as above
-                });
-            });
-        }
-
-        function getUserTypeText(type) {
-            const texts = {
-                'student': 'นักเรียน',
-                'teacher': 'ครูผู้สอน',
-                'parent': 'ผู้ปกครอง',
-                'staff': 'เจ้าหน้าที่'
-            };
-            return texts[type] || type;
-        }
-
-        // Navigation menu interaction
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all links
-                document.querySelectorAll('.nav-link').forEach(l => {
-                    l.classList.remove('active');
-                });
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Show alert for demonstration
-                const pageName = this.textContent;
-                alert(`กำลังไปที่หน้า: ${pageName}\n(สำหรับการสาธิตเท่านั้น)`);
-            });
-        });
-
-        // Initialize user type placeholder
-        document.querySelector('.user-type-btn.active').click();
-    </script>
-</body>
-</html>
